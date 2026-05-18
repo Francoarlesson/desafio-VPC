@@ -1,0 +1,21 @@
+# Ignorar arquivos locais de estado do Terraform (contêm dados sensíveis e mudam constantemente)
+*.tfstate
+*.tfstate.*
+
+# Ignorar o arquivo de variáveis sensíveis (onde você costuma colocar senhas/chaves)
+*.tfvars
+*.tfvars.json
+
+# Ignorar a pasta oculta do Terraform (.terraform), que armazena os binários dos providers baixados
+.terraform/
+
+# Ignorar arquivos de log de travamento (crash logs)
+crash.log
+crash.*.log
+
+# Ignorar arquivos de plano salvos (podem conter segredos em texto puro)
+*.tfplan
+
+# Ignorar arquivos de configuração do CLI do Terraform
+.terraformrc
+terraform.rc
