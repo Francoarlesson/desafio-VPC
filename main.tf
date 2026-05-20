@@ -89,3 +89,45 @@ resource "aws_route_table_association" "public_2" {
   subnet_id      = aws_subnet.public_2.id
   route_table_id = aws_route_table.public.id
 }
+
+# 1. Criar o Security Group para o Servidor
+resource "aws_security_group" "web_sg" {
+  name        = "web-server-sg"
+  description = "Permitir SSH local"
+  vpc_id      = aws_vpc.main.id
+
+  # Regra de Entrada: SSH
+  ingress {
+    description = "SSH de qualquer lugar"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] 
+  }
+
+  # Regra de Saída: Liberar a máquina para atualizar pacotes
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1" 
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "sg-web-desafio"
+  }
+}
+
+# 2. Criar a Instância EC2
+resource "aws_instance" "web_server" {
+  ami           = "ami-0c7217cdde317cfec" # ID oficial do Ubuntu 22.04 LTS na regiao us-east-1
+  instance_type = "t3.micro"
+  subnet_id     = aws_subnet.public_1.id
+
+  # Vincula o Security Group a esta instancia
+  vpc_security_group_ids = [aws_security_group.web_sg.id]
+
+  tags = {
+    Name = "ec2-web-desafio"
+  }
+}
