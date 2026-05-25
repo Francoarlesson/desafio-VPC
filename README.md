@@ -1,12 +1,16 @@
-Projeto de infraestrutura na AWS utilizando Terraform para provisionamento de uma VPC altamente disponível e segmentada em subnets públicas e privadas.
+# 🌐 Arquitetura de Redes AWS: VPC e Segmentação Segura
 
-A arquitetura foi desenvolvida seguindo boas práticas de rede e segurança em Cloud Computing, incluindo:
+Projeto de infraestrutura na AWS utilizando Terraform para o provisionamento de uma VPC altamente disponível e segmentada em subnets públicas e privadas. O foco é a automação da infraestrutura (Infrastructure as Code — IaC), escalabilidade e segurança.
 
-- Criação de uma VPC customizada
-- Configuração de subnets públicas e privadas
-- Associação de tabelas de rotas específicas
-- Acesso à internet nas subnets públicas através de Internet Gateway
-- Saída controlada das subnets privadas utilizando NAT Gateway
-- Separação de ambientes internos e externos visando maior segurança e organização da infraestrutura
+## 🏗️ Topologia e Boas Práticas
 
-O projeto foi desenvolvido utilizando Linux, Terraform e VS Code, com foco em automação de infraestrutura (Infrastructure as Code — IaC), escalabilidade e boas práticas de arquitetura na AWS.
+A arquitetura foi desenvolvida seguindo as melhores práticas de rede em Cloud Computing, incluindo:
+
+* **Isolamento de Rede:** Criação de uma VPC customizada com separação clara entre ambientes internos (privados) e externos (públicos).
+* **Roteamento Estratégico:** Configuração e associação de tabelas de rotas específicas para cada tipo de subnet.
+* **Acesso à Internet:** Liberação de tráfego de entrada/saída nas subnets públicas através de um **Internet Gateway**.
+* **Saída Segura:** Configuração de saída controlada para a internet nas subnets privadas utilizando um **NAT Gateway**, garantindo que servidores internos baixem atualizações sem ficarem expostos.
+
+## 🛠️ Stack Tecnológico
+* **Orquestração:** Terraform (HCL)
+* **Ambiente de Desenvolvimento:** Linux & VS Code
